@@ -1,0 +1,5 @@
+*.bwameth.c2t*
+*.fai
+*.fasta
+*.fastq
+*.gz
