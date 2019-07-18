@@ -1,0 +1,8 @@
+*.fasta
+*.fastq
+*.gz
+*.html
+*.json
+*_bowtie2
+*~
+98_log_files/*
