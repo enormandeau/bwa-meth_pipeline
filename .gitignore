@@ -1,3 +1,5 @@
+*.bai
+*.bam
 *.fasta
 *.fastq
 *.gz
@@ -5,4 +7,4 @@
 *.json
 *_bowtie2
 *~
-98_log_files/*
+10_log_files/*
