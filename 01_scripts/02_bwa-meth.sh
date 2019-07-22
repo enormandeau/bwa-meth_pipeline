@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 4 CPU
-# 20 Go
+# 10 Go
 
 # keep some info
 TIMESTAMP=$(date +%Y-%m-%d_%Hh%Mm%Ss)
