@@ -4,7 +4,9 @@
 *.fastq
 *.gz
 *.html
+*.ids
 *.json
+*.log
 *_bowtie2
 *~
 10_logfiles/*
