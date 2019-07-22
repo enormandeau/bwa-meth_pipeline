@@ -23,8 +23,8 @@ do
 
     # Fastp
     fastp -i "$file"R1.fastq.gz -I "$file"R2.fastq.gz \
-        -o $OUTPUT/"$name"trimmed_R1.fastq.gz \
-        -O $OUTPUT/"$name"trimmed_R2.fastq.gz  \
+        -o $OUTPUT/"$name"R1.fastq.gz \
+        -O $OUTPUT/"$name"R2.fastq.gz  \
         --length_required="$LENGTH" \
         --qualified_quality_phred="$QUAL" \
         --correction \
