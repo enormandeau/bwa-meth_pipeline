@@ -2,8 +2,18 @@
 
 # SAMPLE_FILE has one sample name per line, without the _R1.fastq.gz part
 
-# 4 CPU
-# 10 Go
+## With GNU Parallel
+# ls -1 samples_split/* | parallel -k -j 20 srun -c 4 --mem 10G -p large --time 21-00:00 -J bwaMeth -o 10-logfiles/bwaMeth_%j.log ./01_scripts/02_bwa_meth.sh {} \; sleep 0.1 &
+
+## srun
+# srun -c 4 --mem 10G -p large --time 21-00:00 -J bwaMeth -o 10-log_files/bwaMeth_%j.log ./01_scripts/02_bwa_meth.sh <SAMPLE_FILE>
+
+# First split sample list to align into different files with:
+# cd 04-all_samples
+# ls -1 *.fq.gz > ../all_samples_for_alignment.txt
+# cd ..
+# mkdir samples_split
+# split -a 4 -l 100 -d all_samples_for_alignment.txt samples_split/samples_split.
 
 # keep some info
 TIMESTAMP=$(date +%Y-%m-%d_%Hh%Mm%Ss)
