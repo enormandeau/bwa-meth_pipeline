@@ -7,7 +7,7 @@
 TIMESTAMP=$(date +%Y-%m-%d_%Hh%Mm%Ss)
 SCRIPT=$0
 NAME=$(basename $0)
-LOG_FOLDER="98_log_files"
+LOG_FOLDER="10_logfiles"
 
 # Global variables
 REF="02_reference/genome.fasta"
