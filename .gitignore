@@ -9,5 +9,6 @@
 *.log
 *_bowtie2
 *~
+05_aligned_bam/*
 10_logfiles/*
 samples_split/*
