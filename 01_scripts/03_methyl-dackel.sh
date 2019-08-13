@@ -18,4 +18,11 @@ SAMPLE_FILE="$1"
 # Modules
 module load htslib/1.8
 
-MethylDackel
+#MethylDackel
+for file in $(ls -1 "$ALIGNED_FOLDER"/*.bam)
+do
+    MethylDackel extract --methylKit "$GENOME" "$ALIGNED_FOLDER"/"$file"
+    # echo MethylDackel extract --maxVariantFrac 0.1 "$GENOME" "$ALIGNED_FOLDER"/"$file"
+    # echo MethylDackel extract --mergedContext "$GENOME" "$ALIGNED_FOLDER"/"$file"
+    MethylDackel mbias "$GENOME" "$ALIGNED_FOLDER"/"$file"
+done
