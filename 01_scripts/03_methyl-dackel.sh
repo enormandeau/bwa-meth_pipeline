@@ -12,7 +12,7 @@ GENOME="02_reference/genome.fasta"  # Genomic reference .fasta
 TRIMMED_FOLDER="04_trimmed_reads"
 ALIGNED_FOLDER="05_aligned_bam"
 TEMP_FOLDER="99_tmp/"
-NCPUS=8
+NCPUS=4
 SAMPLE_FILE="$1"
 
 # Modules
@@ -23,15 +23,19 @@ module load htslib/1.8
 #do
 #    MethylDackel extract --methylKit "$GENOME" "$file"
 #    # echo MethylDackel extract --maxVariantFrac 0.1 "$GENOME" "$file"
-#    # echo MethylDackel extract --mergedContext "$GENOME" "$file"
+#    # echo MethylDackel extract --mergeContext "$GENOME" "$file"
 #    MethylDackel mbias "$GENOME" "$file"
 #done
 
 # Gnu Parallel
 ls -1 "$ALIGNED_FOLDER"/*.bam |
 parallel -j "$NCPUS" \
+    MethylDackel extract --maxVariantFrac 0.05 "$GENOME" {} \; \
     MethylDackel extract "$GENOME" {} \; \
+    gzip {.}_CpG.bedGraph \; \
     MethylDackel extract --methylKit "$GENOME" {} \; \
-    MethylDackel extract --mergedContext "$GENOME" {} 
-    MethylDackel mbias "$GENOME" {}
-    #MethylDackel extract --maxVariantFrac 0.05 "$GENOME" {} \; \
+    gzip {.}_CpG.methylKit \; \
+    MethylDackel extract --mergeContext "$GENOME" {} \; \
+    mv {.}_CpG.bedGraph {.}_CpG_merged.bedGraph \; \
+    gzip {.}_CpG_merged.bedGraph \; \
+    MethylDackel mbias "$GENOME" {} {.}_mbias
