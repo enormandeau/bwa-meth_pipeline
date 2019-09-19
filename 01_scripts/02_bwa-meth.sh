@@ -13,7 +13,7 @@
 # ls -1 samples_split/* | parallel -k -j 20 srun -c 4 --mem 10G -p large --time 21-00:00 -J bwaMeth -o 10_logfiles/bwaMeth_%j.log ./01_scripts/02_bwa-meth.sh {} \; sleep 0.1 &
 
 ## srun
-# srun -c 4 --mem 10G -p large --time 21-00:00 -J bwaMeth -o 10_log_files/bwaMeth_%j.log ./01_scripts/02_bwa-meth.sh <SAMPLE_FILE>
+# srun -c 4 --mem 10G -p large --time 21-00:00 -J bwaMeth -o 10_logfiles/bwaMeth_%j.log ./01_scripts/02_bwa-meth.sh <SAMPLE_FILE>
 
 # keep some info
 TIMESTAMP=$(date +%Y-%m-%d_%Hh%Mm%Ss)
