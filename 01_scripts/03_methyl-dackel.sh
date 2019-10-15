@@ -12,8 +12,7 @@ GENOME="02_reference/genome.fasta"  # Genomic reference .fasta
 TRIMMED_FOLDER="04_trimmed_reads"
 ALIGNED_FOLDER="05_aligned_bam"
 TEMP_FOLDER="99_tmp/"
-NCPUS=4
-SAMPLE_FILE="$1"
+NCPUS=20
 
 # Modules
 module load htslib/1.8
