@@ -14,7 +14,7 @@ cp $SCRIPT $LOG_FOLDER/"$TIMESTAMP"_"$NAME"
 LENGTH=100
 QUAL=25
 INPUT="03_raw_data"
-OUTPUT="04_trimmed_reads"
+OUTPUT="04_trimmed"
 NUMCPUS=8
 
 # Trim reads with fastp

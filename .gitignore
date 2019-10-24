@@ -1,4 +1,5 @@
 *.bai
+98_metrics/*
 *.bam
 *.fasta
 *.fastq
@@ -10,7 +11,7 @@
 *_bowtie2
 *~
 02_reference/*
-05_aligned_bam/*
+05_aligned/*
 10_logfiles/*
 all_samples*
 samples_split/*

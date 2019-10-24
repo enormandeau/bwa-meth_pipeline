@@ -9,8 +9,8 @@ cp "$SCRIPT" "$LOG_FOLDER"/"$TIMESTAMP"_"$NAME"
 
 # Define options
 GENOME="02_reference/genome.fasta"  # Genomic reference .fasta
-TRIMMED_FOLDER="04_trimmed_reads"
-ALIGNED_FOLDER="05_aligned_bam"
+TRIMMED_FOLDER="04_trimmed"
+ALIGNED_FOLDER="05_aligned"
 TEMP_FOLDER="99_tmp/"
 NCPUS=20
 
