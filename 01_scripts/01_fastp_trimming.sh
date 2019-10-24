@@ -17,27 +17,7 @@ INPUT="03_raw_data"
 OUTPUT="04_trimmed"
 NUMCPUS=8
 
-# Trim reads with fastp
-#for file in $(ls "$INPUT"/*_R1.fastq.gz | perl -pe 's/R[12]\.fastq\.gz//g')
-#do
-#    name=$(basename $file)
-
-#    # Fastp
-#    fastp -i "$file"R1.fastq.gz -I "$file"R2.fastq.gz \
-#        -o $OUTPUT/"$name"R1.fastq.gz \
-#        -O $OUTPUT/"$name"R2.fastq.gz  \
-#        --length_required="$LENGTH" \
-#        --qualified_quality_phred="$QUAL" \
-#        --correction \
-#        --trim_tail1=1 \
-#        --trim_tail2=1 \
-#        --json $OUTPUT/"$name".json \
-#        --html $OUTPUT/"$name".html  \
-#        --report_title="$name"report.html
-
-#done 2>&1 | tee 10_logfiles/"$TIMESTAMP"_fastp.log
-
-# Gnu Parallel version
+# Trim reads with fastp and Gnu Parallel
 ls "$INPUT"/*_R1.fastq.gz | perl -pe 's/R[12]\.fastq\.gz//g' |
 parallel -j "$NUMCPUS" \
     fastp -i {}R1.fastq.gz -I {}R2.fastq.gz \

@@ -17,15 +17,6 @@ NCPUS=20
 # Modules
 module load htslib/1.8
 
-#MethylDackel
-#for file in $(ls -1 "$ALIGNED_FOLDER"/*.bam)
-#do
-#    MethylDackel extract --methylKit "$GENOME" "$file"
-#    # echo MethylDackel extract --maxVariantFrac 0.1 "$GENOME" "$file"
-#    # echo MethylDackel extract --mergeContext "$GENOME" "$file"
-#    MethylDackel mbias "$GENOME" "$file"
-#done
-
 # Gnu Parallel
 ls -1 "$ALIGNED_FOLDER"/*.bam |
 parallel -j "$NCPUS" \
