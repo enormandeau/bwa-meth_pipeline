@@ -1,5 +1,4 @@
 *.bai
-98_metrics/*
 *.bam
 *.fasta
 *.fastq
@@ -8,10 +7,12 @@
 *.ids
 *.json
 *.log
+*.svg
 *_bowtie2
 *~
 02_reference/*
 05_aligned/*
 10_logfiles/*
+98_metrics/*
 all_samples*
 samples_split/*

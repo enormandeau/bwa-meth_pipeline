@@ -9,16 +9,16 @@ cp "$SCRIPT" "$LOG_FOLDER"/"$TIMESTAMP"_"$NAME"
 
 # Define options
 GENOME="02_reference/genome.fasta"  # Genomic reference .fasta
-TRIMMED_FOLDER="04_trimmed"
-ALIGNED_FOLDER="05_aligned"
+DEDUPLICATED_FOLDER="06_deduplicated"
+METHYLDACKEL_FOLDER="07_methyl_dackel"
 TEMP_FOLDER="99_tmp/"
-NCPUS=20
+NCPUS=8
 
 # Modules
 module load htslib/1.8
 
 # Gnu Parallel
-ls -1 "$ALIGNED_FOLDER"/*.bam |
+ls -1 "$DEDUPLICATED_FOLDER"/*.bam |
 parallel -j "$NCPUS" \
     MethylDackel extract --maxVariantFrac 0.05 "$GENOME" {} \; \
     MethylDackel extract "$GENOME" {} \; \
@@ -29,3 +29,6 @@ parallel -j "$NCPUS" \
     mv {.}_CpG.bedGraph {.}_CpG_merged.bedGraph \; \
     gzip {.}_CpG_merged.bedGraph \; \
     MethylDackel mbias "$GENOME" {} {.}_mbias
+
+# Move files to METHYLDACKEL_FOLDER
+ls -1 "$DEDUPLICATED_FOLDER"/ | grep -v \.bam | parallel -j "$NCPUS" mv "$DEDUPLICATED_FOLDER"/{} "$METHYLDACKEL_FOLDER"
