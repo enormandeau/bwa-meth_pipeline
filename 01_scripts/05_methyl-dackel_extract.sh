@@ -28,7 +28,6 @@ parallel -j "$NCPUS" \
     MethylDackel extract --mergeContext "$GENOME" {} \; \
     mv {.}_CpG.bedGraph {.}_CpG_merged.bedGraph \; \
     gzip {.}_CpG_merged.bedGraph \; \
-    MethylDackel mbias "$GENOME" {} {.}_mbias
 
 # Move files to METHYLDACKEL_FOLDER
 ls -1 "$DEDUPLICATED_FOLDER"/ | grep -v \.bam | parallel -j "$NCPUS" mv "$DEDUPLICATED_FOLDER"/{} "$METHYLDACKEL_FOLDER"
