@@ -3,14 +3,14 @@
 # SAMPLE_FILE has one sample name per line, without the _R1.fastq.gz part
 
 # First split sample list to align into different files with:
-# cd 03_raw_data
+# cd 04_trimmed
 # ls -1 *R1.fastq.gz | perl -pe 's/_R1\.fastq\.gz//' > ../all_samples_for_alignment.txt
 # cd ..
 # mkdir samples_split
 # split -a 4 -l 100 -d all_samples_for_alignment.txt samples_split/samples_split.
 
 ## With GNU Parallel
-# ls -1 samples_split/* | parallel -k -j 20 srun -c 4 --mem 10G -p large --time 21-00:00 -J bwaMeth -o 10_logfiles/bwaMeth_%j.log ./01_scripts/02_bwa-meth.sh {} \; sleep 0.1 &
+# ls -1 samples_split/* | parallel -k -j 10 srun -c 4 --mem 10G -p large --time 21-00:00 -J bwaMeth -o 10_logfiles/bwaMeth_%j.log ./01_scripts/02_bwa-meth.sh {} &
 
 ## srun
 # srun -c 4 --mem 10G -p large --time 21-00:00 -J bwaMeth -o 10_logfiles/bwaMeth_%j.log ./01_scripts/02_bwa-meth.sh <SAMPLE_FILE>
