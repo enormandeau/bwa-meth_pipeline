@@ -3,11 +3,11 @@
 # 100 Go
 
 # Global variables
-MARKDUPS="/prg/picard-tools/1.119/MarkDuplicates.jar"
+MARKDUPS="/home/eric/Software/picard-tools-1.119/MarkDuplicates.jar"
 ALIGNEDFOLDER="05_aligned"
 DEDUPFOLDER="06_deduplicated"
 METRICSFOLDER="98_metrics"
-NCPUS=20
+NCPUS=5
 
 # Copy script to log folder
 TIMESTAMP=$(date +%Y-%m-%d_%Hh%Mm%Ss)
@@ -37,10 +37,11 @@ module load java/jdk/1.8.0_102
 
 # Remove duplicates from bam alignments with Gnu Parallel
 ls -1 "$ALIGNEDFOLDER"/*.bam |
-parallel -j 5 \
+parallel -j "$NCPUS" \
     java -jar "$MARKDUPS" \
     INPUT={} \
     OUTPUT="$DEDUPFOLDER"/{/.}.dedup.bam \
     METRICS_FILE="$METRICSFOLDER"/{/.}.metrics.txt \
     VALIDATION_STRINGENCY=SILENT \
+    MAX_FILE_HANDLES=100 \
     REMOVE_DUPLICATES=true \; echo
