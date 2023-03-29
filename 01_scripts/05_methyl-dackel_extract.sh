@@ -20,7 +20,7 @@ module load htslib/1.8
 # Gnu Parallel
 ls -1 "$DEDUPLICATED_FOLDER"/*.bam |
 parallel -j "$NCPUS" \
-    MethylDackel extract --OT 0,0,0,145 --OB 3,0,6,0 --maxVariantFrac 0.05 "$GENOME" {} \; \
+    MethylDackel extract --OT 0,0,0,145 --OB 3,0,6,0 --minOppositeDepth 1 --maxVariantFrac 0.1 "$GENOME" {} \; \
     MethylDackel extract --OT 0,0,0,145 --OB 3,0,6,0 "$GENOME" {} \; \
     gzip {.}_CpG.bedGraph \; \
     MethylDackel extract --OT 0,0,0,145 --OB 3,0,6,0 --methylKit "$GENOME" {} \; \
