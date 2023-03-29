@@ -21,11 +21,11 @@ module load htslib/1.8
 ls -1 "$DEDUPLICATED_FOLDER"/*.bam |
 parallel -j "$NCPUS" \
     MethylDackel extract --OT 0,0,0,145 --OB 3,0,6,0 --minOppositeDepth 1 --maxVariantFrac 0.1 "$GENOME" {} \; \
-    MethylDackel extract --OT 0,0,0,145 --OB 3,0,6,0 "$GENOME" {} \; \
+    MethylDackel extract --OT 0,0,0,145 --OB 3,0,6,0 --minOppositeDepth 1 --maxVariantFrac 0.1 "$GENOME" {} \; \
     gzip {.}_CpG.bedGraph \; \
-    MethylDackel extract --OT 0,0,0,145 --OB 3,0,6,0 --methylKit "$GENOME" {} \; \
+    MethylDackel extract --OT 0,0,0,145 --OB 3,0,6,0 --minOppositeDepth 1 --maxVariantFrac 0.1 --methylKit "$GENOME" {} \; \
     gzip {.}_CpG.methylKit \; \
-    MethylDackel extract --OT 0,0,0,145 --OB 3,0,6,0 --mergeContext "$GENOME" {} \; \
+    MethylDackel extract --OT 0,0,0,145 --OB 3,0,6,0 --minOppositeDepth 1 --maxVariantFrac 0.1 --mergeContext "$GENOME" {} \; \
     mv {.}_CpG.bedGraph {.}_CpG_merged.bedGraph \; \
     gzip {.}_CpG_merged.bedGraph \; \
 
